@@ -7,7 +7,7 @@ from Titanic;
 
 -- Add nine more constraints to the table
 ALTER TABLE Titanic
-    ADD CONSTRAINT age_constraint CHECK (age > 0);
+    ADD CONSTRAINT age_constraint CHECK (age >= 0 OR age IS NULL);
 
 ALTER TABLE Titanic
     ADD CONSTRAINT embarked_constraint CHECK (embarked IN ('C', 'Q', 'S'));
@@ -23,7 +23,7 @@ ALTER TABLE Titanic
     ADD CONSTRAINT sibsp_constraint CHECK (sibsp >= 0);
 
 ALTER TABLE TITANIC
-    ADD CONSTRAINT fare_constraint CHECK (fare > 0);
+    ADD CONSTRAINT fare_constraint CHECK (fare >= 0);
 
 ALTER TABLE TITANIC
     ALTER COLUMN ticket VARCHAR(100) NOT NULL;
@@ -38,13 +38,16 @@ ALTER TABLE TITANIC
 -- Create an own table for embarkings
 CREATE TABLE Embarking
 (
-    id      int PRIMARY KEY AUTO_INCREMENT,
-    kuerzel VARCHAR(1) NOT NULL,
+    id      INT PRIMARY KEY AUTO_INCREMENT,
+    kuerzel VARCHAR(1)
 );
 
 -- Copy all embarkings from Titanic to Embarking
-INSERT INTO Embarking (kuerzel)
-VALUES (SELECT DISTINCT embarked FROM Titanic);
+INSERT INTO Embarking(kuerzel)
+SELECT DISTINCT embarked
+FROM Titanic
+where EMBARKED IS NOT NULL;
+
 
 ALTER TABLE Embarking
     ADD COLUMN name VARCHAR(100);
