@@ -37,13 +37,13 @@ VALUES ('Washington DC', 200, 10, 'Flugzeug', '2023-08-10'),
 CREATE TABLE Verkehrsmittel
 (
     id   int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name varchar(20)
+    name varchar(20) UNIQUE
 );
 
 CREATE TABLE Ziele
 (
     id   int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name varchar(20)
+    name varchar(20) UNIQUE
 );
 
 -- We now define a "fancy" reise table with some foreign keys
