@@ -5,7 +5,7 @@ CREATE TABLE Cities
     Name      varchar(255) NOT NULL,
     Land      varchar(255) NOT NULL,
     Einwohner int          NOT NULL,
-    Flaeche   int          NOT NULL,
+    Flaeche   int          NOT NULL
 );
 
 -- Insert some data
