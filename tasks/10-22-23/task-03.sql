@@ -2,7 +2,7 @@
 -- Either make the "id" column a primary key or make it unique
 CREATE TABLE Reise
 (
-    id             int PRIMARY KEY AUTO_INCREMENT,
+    id             int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     ziel           varchar(20),
     preis          int,
     dauer          int,
@@ -36,20 +36,20 @@ VALUES ('Washington DC', 200, 10, 'Flugzeug', '2023-08-10'),
 
 CREATE TABLE Verkehrsmittel
 (
-    id   int PRIMARY KEY AUTO_INCREMENT,
+    id   int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name varchar(20)
 );
 
 CREATE TABLE Ziele
 (
-    id   int PRIMARY KEY AUTO_INCREMENT,
+    id   int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name varchar(20)
 );
 
 -- We now define a "fancy" reise table with some foreign keys
 CREATE TABLE FancyReise
 (
-    id                int PRIMARY KEY AUTO_INCREMENT,
+    id                int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     ziel_id           int,
     preis             int,
     dauer             int,
