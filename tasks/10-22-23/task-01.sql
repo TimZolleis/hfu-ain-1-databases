@@ -1,12 +1,11 @@
 -- Create cities table
 CREATE TABLE Cities
 (
-    id        int          NOT NULL AUTO_INCREMENT,
+    id        int          NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Name      varchar(255) NOT NULL,
     Land      varchar(255) NOT NULL,
     Einwohner int          NOT NULL,
     Flaeche   int          NOT NULL,
-    PRIMARY KEY (id)
 );
 
 -- Insert some data
@@ -27,11 +26,10 @@ VALUES ('Paris', 'Frankreich', 2102650, 105),
 -- Now we create a table called "Attractions" which will reference a name, description and city
 CREATE TABLE Attractions
 (
-    id           int          NOT NULL AUTO_INCREMENT,
+    id           int          NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Name         varchar(255) NOT NULL,
     Beschreibung varchar(50)  NOT NULL,
     Stadt        int          NOT NULL,
-    PRIMARY KEY (id),
     FOREIGN KEY (Stadt) REFERENCES Cities (id)
 );
 
