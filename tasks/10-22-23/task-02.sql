@@ -33,11 +33,10 @@ DROP TABLE Attractions;
 -- 2. Create the table without a foreign key
 CREATE TABLE Attractions
 (
-    id           int          NOT NULL AUTO_INCREMENT,
+    id           int          NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     Name         varchar(255) NOT NULL,
     Beschreibung varchar(50)  NOT NULL,
     Stadt        int          NOT NULL,
-    PRIMARY KEY (id)
 );
 
 -- 3. Add the foreign key
