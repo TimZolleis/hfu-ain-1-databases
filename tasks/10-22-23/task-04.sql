@@ -2,8 +2,14 @@
 ALTER TABLE Titanic
     ADD COLUMN id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY;
 
-SELECT DISTINCT embarked, sibsp, parch
+SELECT DISTINCT embarked
 from Titanic;
+
+SELECT DISTINCT SIBSP
+from TITANIC;
+
+SELECT DISTINCT PARCH
+FROM TITANIC;
 
 -- Add nine more constraints to the table
 ALTER TABLE Titanic
@@ -14,7 +20,7 @@ ALTER TABLE Titanic
 
 -- I know some people are gonna kill me for that in 2023
 ALTER TABLE Titanic
-    ADD CONSTRAINT gender_constraint CHECK (gender IN ('male', 'female'));
+    ADD CONSTRAINT gender_constraint CHECK (gender IN ('male', 'female', 'diverse'));
 
 ALTER TABLE Titanic
     ADD CONSTRAINT parch_constraint CHECK (parch >= 0);
@@ -39,18 +45,18 @@ ALTER TABLE TITANIC
 CREATE TABLE Embarking
 (
     id      INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    kuerzel VARCHAR(1)
+    kuerzel VARCHAR(1) unique
 );
 
 -- Copy all embarkings from Titanic to Embarking
-INSERT INTO Embarking(kuerzel)
-SELECT DISTINCT embarked
-FROM Titanic
-where EMBARKED IS NOT NULL;
+INSERT INTO Embarking(kuerzel)(SELECT DISTINCT embarked
+                               FROM Titanic
+                               where EMBARKED IS NOT NULL);
+
 
 
 ALTER TABLE Embarking
-    ADD COLUMN name VARCHAR(100);
+    ADD COLUMN name VARCHAR(100) UNIQUE;
 
 ALTER TABLE Embarking
     ADD CONSTRAINT name_constraint CHECK (LOWER(LEFT(name, 1)) = LOWER(kuerzel));

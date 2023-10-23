@@ -35,7 +35,7 @@ CREATE TABLE Attractions
 
 
 -- Insert some data
-INSERT INTO Attractions (Name, Beschreibung, Stadt)
+INSERT INTO Attractions (Name, Beschreibung,  Stadt)
 VALUES ('Rennrad fahren', 'Fahre ein Rennrad', 2),
        ('Eiffelturm', 'Der Turm', 5);
 
