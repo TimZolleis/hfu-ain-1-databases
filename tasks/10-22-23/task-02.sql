@@ -37,7 +37,7 @@ CREATE TABLE Attractions
     Name         varchar(255) NOT NULL,
     Beschreibung varchar(50)  NOT NULL,
     Stadt        int          NOT NULL,
-    PRIMARY KEY (id),
+    PRIMARY KEY (id)
 );
 
 -- 3. Add the foreign key

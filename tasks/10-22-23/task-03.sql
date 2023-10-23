@@ -25,7 +25,7 @@ VALUES ('Rom', 100, 3, 'Zug', '2019-01-01'),
 
 -- Add constraint that "preis" is at least 50
 ALTER TABLE Reise
-    ADD CONSTRAINT reise_preis_constraint CHECK (preis >= 50);
+    ADD CONSTRAINT reise_preis_groesser_50_constraint CHECK (preis >= 50);
 
 -- Add some more data
 INSERT INTO Reise (ziel, preis, dauer, verkehrsmittel, anfangsdatum)
