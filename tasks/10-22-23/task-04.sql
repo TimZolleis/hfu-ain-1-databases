@@ -1,6 +1,6 @@
 -- Add primary key to titanic table
 ALTER TABLE Titanic
-    ADD COLUMN id INT PRIMARY KEY AUTO_INCREMENT;
+    ADD COLUMN id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY;
 
 SELECT DISTINCT embarked, sibsp, parch
 from Titanic;
@@ -38,7 +38,7 @@ ALTER TABLE TITANIC
 -- Create an own table for embarkings
 CREATE TABLE Embarking
 (
-    id      INT PRIMARY KEY AUTO_INCREMENT,
+    id      INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     kuerzel VARCHAR(1)
 );
 
