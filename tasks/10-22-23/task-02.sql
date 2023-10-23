@@ -1,9 +1,9 @@
 -- Add new columns to the cities table
 ALTER TABLE Cities
-    ADD COLUMN laengengrad DECIMAL(2, 4);
+    ADD COLUMN laengengrad DECIMAL(6, 4);
 
 ALTER TABLE Cities
-    ADD COLUMN breitengrad DECIMAl(2, 4);
+    ADD COLUMN breitengrad DECIMAl(6, 4);
 
 UPDATE Cities
 
