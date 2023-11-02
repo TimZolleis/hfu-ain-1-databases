@@ -15,6 +15,10 @@ CREATE TABLE barcodes
     rpl32     varchar(12)
 );
 
+
+-- You could use SELECT DISTINCT per column and count to get the amount of non-distinct values...but that takes forever
+
+
 -- Read the data from the CSV file
 INSERT INTO barcodes (taxon, type, voucherID, gardenID, sampleID, origin, rpoB, rpoC, matK, trnHpsbA, rpl32)
         (SELECT * FROM csvread('barcodes.csv'));
