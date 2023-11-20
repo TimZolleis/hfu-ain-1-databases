@@ -41,7 +41,7 @@ CREATE TABLE taxa
 
 -- Copy the taxa data to the new table
 INSERT INTO taxa (name)
-        (SELECT DISTINCT taxon FROM barcodes WHERE taxon IS NOT NULL);
+        (SELECT DISTINCT taxon FROM barcodes);
 
 -- Add the taxonId column to the barcodes table
 ALTER TABLE barcodes
