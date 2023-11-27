@@ -24,9 +24,9 @@ FROM TITANIC
 WHERE FARE = 0;
 
 -- Select the ticket number of John Jacob Astor
-SELECT TICKET
+SELECT TICKET, NAME
 FROM TITANIC
-WHERE NAME LIKE '%Astor, Mr%';
+WHERE NAME LIKE '%Astor%' AND NAME NOT LIKE '%Mrs%';
 -- Or we could search explicitly
 SELECT TICKET
 FROM TITANIC
@@ -61,7 +61,7 @@ WHERE GENDER = 'male'
 -- Select the different boats. It cannot be precise, since some people were in multiple boats
 SELECT DISTINCT BOAT
 FROM TITANIC
-WHERE BOAT IS NOT NULL;
+WHERE BOAT NOT LIKE '% %' AND BOAT IS NOT NULL;
 
 
 -- Try to get one from germany
