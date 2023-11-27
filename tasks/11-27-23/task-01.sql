@@ -16,13 +16,13 @@ FROM TITANIC;
 SELECT COUNT(CASE WHEN AGE <= 15 THEN 1 END) AS "UNDER 15", COUNT(CASE WHEN AGE > 15 THEN 1 END) AS "OVER 15"
 FROM TITANIC;
 
--- The average of all passengers, all that survived and all that died
+-- The average age of all passengers, all that survived and all that died
 SELECT AVG(AGE)                                     AS "ALL PASSENGERS",
        AVG(CASE WHEN SURVIVED = true THEN AGE END)  AS "SURVIVED",
        AVG(CASE WHEN SURVIVED = false THEN AGE END) AS "DIED"
 FROM TITANIC;
 
--- All boats that are not doubled
+-- All boats that are unique
 SELECT DISTINCT BOAT
 FROM TITANIC
 WHERE BOAT NOT LIKE '% %';
@@ -35,7 +35,6 @@ GROUP BY BOAT;
 
 
 -- Select all boats that have min 25. passengers
-
 SELECT BOAT as "BOAT WITH >= 25 PASS", COUNT(BOAT) AS "PASSENGERS"
 FROM TITANIC
 WHERE BOAT NOT LIKE '% %'
