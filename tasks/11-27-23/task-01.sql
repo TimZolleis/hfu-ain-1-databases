@@ -22,6 +22,7 @@ SELECT AVG(AGE)                                     AS "ALL PASSENGERS",
        AVG(CASE WHEN SURVIVED = false THEN AGE END) AS "DIED"
 FROM TITANIC;
 
+
 -- All boats that are unique
 SELECT DISTINCT BOAT
 FROM TITANIC
