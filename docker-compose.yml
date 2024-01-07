@@ -1,7 +1,9 @@
 services:
   h2-database:
     container_name: h2-database
-    image: oscarfonts/h2:latest
+    build:
+        context: .
+        dockerfile: Dockerfile
     volumes:
       - ./h2-data:/opt/h2-data
     ports:
