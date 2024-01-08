@@ -16,26 +16,35 @@ FROM TITANIC
 WHERE TITANIC.EMBARKED_ID IN (SELECT ID FROM EMBARKED WHERE CITY LIKE '%town');
 
 //This query returns the embared_id of the harbor with the least embarkings
-SELECT TITANIC.EMBARKED_ID
-FROM TITANIC
+SELECT EMBARKED_ID
+FROM TITANIC,
+     EMBARKED
+WHERE EMBARKED_ID = EMBARKED.ID
 GROUP BY TITANIC.EMBARKED_ID
-HAVING COUNT(*) = (
-    SELECT MIN(COUNT)
-    FROM (SELECT COUNT(*) AS COUNT, EMBARKED_ID FROM TITANIC WHERE EMBARKED_ID IS NOT NULL GROUP BY EMBARKED_ID));
+HAVING COUNT(*) <= ALL (SELECT COUNT(*)
+                        FROM TITANIC,
+                             EMBARKED
+                        WHERE EMBARKED_ID = EMBARKED.ID
+                        GROUP BY EMBARKED_ID);
 
-
-//This query returns the name and embarked_id of the passengers that embarked in the harbor with the least embarkings
-SELECT NAME, EMBARKED_ID
+//Name of the passengers that embarked in the least used harbor
+SELECT TITANIC.NAME, TITANIC.EMBARKED_ID
 FROM TITANIC
-WHERE EMBARKED_ID IN (
-    SELECT TITANIC.EMBARKED_ID
-    FROM TITANIC
+WHERE EMBARKED_ID = (
+    //Embarked ID of the least used harbor
+    SELECT EMBARKED_ID
+    FROM TITANIC,
+         EMBARKED
+    WHERE EMBARKED_ID = EMBARKED.ID
     GROUP BY TITANIC.EMBARKED_ID
-    HAVING COUNT(*) = (
-        SELECT MIN(COUNT)
-        FROM (SELECT COUNT(*) AS COUNT, EMBARKED_ID FROM TITANIC WHERE EMBARKED_ID IS NOT NULL GROUP BY EMBARKED_ID))
+    HAVING COUNT(*) <= ALL (
+        //Embarked ID and count per harbor
+        SELECT COUNT(*)
+        FROM TITANIC,
+             EMBARKED
+        WHERE EMBARKED_ID = EMBARKED.ID
+        GROUP BY EMBARKED_ID)
     );
-
 
 //This query does not work because there a nulls in the age column
 select name, age
